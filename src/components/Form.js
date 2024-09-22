@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import React from 'react';
 
 function Form() {
@@ -8,15 +9,19 @@ function Form() {
     handleSubmit,
     formState: { errors },
     watch,
+    reset
   } = useForm();
 
   const password = watch("password");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = (data) => {
-    alert("Data Registered Successfully!");
+    setIsSubmitted(true);
+    reset();
   };
-
   return (
+    <>
+    {isSubmitted && <p className="success-message">Data Registered Successfully!</p>}
     <form className="form_style" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="heading">Registration Form</h1>
 
@@ -37,7 +42,7 @@ function Form() {
           })}
         />
 
-        {errors.username && <p>{errors.username.message}</p>}
+        {errors.username && <p className="error-message">{errors.username.message}</p>}
       </div>
 
       <div className="mb-3">
@@ -56,7 +61,7 @@ function Form() {
             },
           })}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="error-message">{errors.email.message}</p>}
       </div>
 
       <div className="mb-3">
@@ -75,7 +80,7 @@ function Form() {
             },
           })}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && <p className="error-message">{errors.password.message}</p>}
       </div>
 
       <div className="mb-3">
@@ -92,13 +97,14 @@ function Form() {
               value === password || "Passwords do not match",
           })}
         />
-        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+        {errors.confirmPassword && <p className="error-message">{errors.confirmPassword.message}</p>}
       </div>
 
       <button type="submit" className="btn btn-primary">
         Submit
       </button>
     </form>
+    </>
   );
 }
 

@@ -8,3 +8,15 @@
 .heading{
     font-size: 3.5rem;
 }
+
+.success-message {
+    
+    color: green;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
