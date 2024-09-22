@@ -1,0 +1,10 @@
+.form_style{
+    width: max-content;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.heading{
+    font-size: 3.5rem;
+}
